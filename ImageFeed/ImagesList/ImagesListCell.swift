@@ -8,11 +8,20 @@
 import UIKit
 
 final class ImagesListCell: UITableViewCell {
-    @IBOutlet private var photoImageView: UIImageView!
     
+    // MARK: - IBOutlets
+    @IBOutlet private var photoImageView: UIImageView!
+    @IBOutlet private var dateLabel: UILabel!
+    @IBOutlet private var likeButton: UIButton!
+    
+    // MARK: - Constants
     static let reuseIdentifier = "ImagesListCell"
+    private let gradientHeight: CGFloat = 30
+    
+    // MARK: Properties
     private let gradientLayer = CAGradientLayer()
     
+    // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         setUpGradient()
@@ -20,8 +29,6 @@ final class ImagesListCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews( )
-        
-        let gradientHeight: CGFloat = 30
         
         gradientLayer.frame = CGRect(
             x: 0,
@@ -31,6 +38,23 @@ final class ImagesListCell: UITableViewCell {
         )
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        photoImageView.image = nil
+        dateLabel.text = nil
+        likeButton.setImage(nil, for: .normal)
+    }
+    
+    // MARK: - Configuration
+    func configure(image: UIImage, dateText: String, isLiked: Bool) {
+        photoImageView.image = image
+        dateLabel.text = dateText
+        
+        let imageName = isLiked ? "Active" : "No Active"
+        likeButton.setImage(UIImage(named: imageName), for: .normal)
+    }
+    
+    // MARK: - Private methods
     private func setUpGradient() {
         gradientLayer.colors = [
             UIColor.ypBlack.withAlphaComponent(0.0).cgColor,
@@ -40,6 +64,8 @@ final class ImagesListCell: UITableViewCell {
         gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
         gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
         
-        photoImageView.layer.addSublayer(gradientLayer)
+        if gradientLayer.superlayer == nil {
+            photoImageView.layer.addSublayer(gradientLayer)
+        }
     }
 }

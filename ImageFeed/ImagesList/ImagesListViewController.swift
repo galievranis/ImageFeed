@@ -8,23 +8,52 @@
 import UIKit
 
 class ImagesListViewController: UIViewController {
+    
+    // MARK: - IBOutlets
     @IBOutlet private var tableView: UITableView!
     
+    // MARK: - Properties
+    private let photoNames: [String] = Array(0..<20).map{ "\($0)" }
+    
+    private lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        return formatter
+    }()
+    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = 200
-    }
-}
-
-extension ImagesListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
     }
 }
 
+// MARK: - UITableViewDelegate
+extension ImagesListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let imageName = photoNames[indexPath.row]
+        let defaultRowHeight: CGFloat = 200
+        let horizontalInset: CGFloat = 16
+        
+        guard let image = UIImage(named: imageName) else {
+            return defaultRowHeight
+        }
+        
+        let targetWidth = tableView.bounds.width - horizontalInset * 2
+        
+        let imageScale = targetWidth / image.size.width
+        let scaledHeight = image.size.height * imageScale
+        
+        return scaledHeight
+    }
+}
+
+// MARK: - UITableViewDataSource
 extension ImagesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return photoNames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -34,11 +63,23 @@ extension ImagesListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        configCell(for: imageListCell)
+        configureCell(for: imageListCell, with: indexPath)
         return imageListCell
     }
-    
-    func configCell(for cell: ImagesListCell) {
+}
+
+// MARK: - Cell Configuration
+extension ImagesListViewController {
+    private func configureCell(for cell: ImagesListCell, with indexPath: IndexPath) {
+        let imageName = photoNames[indexPath.row]
         
+        guard let image = UIImage(named: imageName) else {
+            return
+        }
+        
+        let dateText = dateFormatter.string(from: Date())
+        let isLiked = indexPath.row % 2 == 0
+        
+        cell.configure(image: image, dateText: dateText, isLiked: isLiked)
     }
 }
