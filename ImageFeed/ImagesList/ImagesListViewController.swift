@@ -7,13 +7,14 @@
 
 import UIKit
 
-class ImagesListViewController: UIViewController {
-    
+final class ImagesListViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet private var tableView: UITableView!
     
     // MARK: - Properties
     private let photoNames: [String] = Array(0..<20).map{ "\($0)" }
+    let defaultRowHeight: CGFloat = 200
+    let horizontalInset: CGFloat = 16
     
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -34,14 +35,16 @@ class ImagesListViewController: UIViewController {
 extension ImagesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let imageName = photoNames[indexPath.row]
-        let defaultRowHeight: CGFloat = 200
-        let horizontalInset: CGFloat = 16
         
         guard let image = UIImage(named: imageName) else {
             return defaultRowHeight
         }
         
         let targetWidth = tableView.bounds.width - horizontalInset * 2
+        
+        guard image.size.width > 0 else {
+            return defaultRowHeight
+        }
         
         let imageScale = targetWidth / image.size.width
         let scaledHeight = image.size.height * imageScale
@@ -53,7 +56,7 @@ extension ImagesListViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension ImagesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return photoNames.count
+        photoNames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -70,7 +73,7 @@ extension ImagesListViewController: UITableViewDataSource {
 
 // MARK: - Cell Configuration
 extension ImagesListViewController {
-    private func configureCell(for cell: ImagesListCell, with indexPath: IndexPath) {
+    private func configureCell(for cell: ImagesListCell,with indexPath: IndexPath) {
         let imageName = photoNames[indexPath.row]
         
         guard let image = UIImage(named: imageName) else {

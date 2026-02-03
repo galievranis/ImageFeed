@@ -8,7 +8,6 @@
 import UIKit
 
 final class ImagesListCell: UITableViewCell {
-    
     // MARK: - IBOutlets
     @IBOutlet private var photoImageView: UIImageView!
     @IBOutlet private var dateLabel: UILabel!
@@ -46,7 +45,11 @@ final class ImagesListCell: UITableViewCell {
     }
     
     // MARK: - Configuration
-    func configure(image: UIImage, dateText: String, isLiked: Bool) {
+    func configure(
+        image: UIImage,
+        dateText: String,
+        isLiked: Bool
+    ) {
         photoImageView.image = image
         dateLabel.text = dateText
         
@@ -58,11 +61,13 @@ final class ImagesListCell: UITableViewCell {
     private func setUpGradient() {
         gradientLayer.colors = [
             UIColor.ypBlack.withAlphaComponent(0.0).cgColor,
-            UIColor.ypBlack.withAlphaComponent(0.2).cgColor
+            UIColor.ypBlack.cgColor
         ]
         
         gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
         gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
+        gradientLayer.locations = [0.0, 0.5]
+        gradientLayer.opacity = 0.2
         
         if gradientLayer.superlayer == nil {
             photoImageView.layer.addSublayer(gradientLayer)
