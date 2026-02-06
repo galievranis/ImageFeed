@@ -37,11 +37,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="UV9-Nw-ZjM">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="UV9-Nw-ZjM">
                                 <rect key="frame" x="0.0" y="172" width="393" height="563"/>
                                 <color key="backgroundColor" name="YP Black"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImagesListCell" rowHeight="322" id="cUh-uD-FqI" customClass="ImagesListCell" customModule="ImageFeed" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImagesListCell" rowHeight="322" id="cUh-uD-FqI" customClass="ImagesListCell" customModule="ImageFeed" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="322"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cUh-uD-FqI" id="cuB-8P-NaW">
@@ -113,6 +113,7 @@
                     <navigationItem key="navigationItem" id="e3x-hw-asW"/>
                     <connections>
                         <outlet property="tableView" destination="UV9-Nw-ZjM" id="idB-Wh-wed"/>
+                        <segue destination="byQ-xP-uZV" kind="show" identifier="ShowSingleImage" id="FBb-LM-fK0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -216,9 +217,40 @@
             </objects>
             <point key="canvasLocation" x="722.90076335877859" y="-232.3943661971831"/>
         </scene>
+        <!--SingleImage-->
+        <scene sceneID="lwC-g9-wAB">
+            <objects>
+                <viewController id="byQ-xP-uZV" userLabel="SingleImage" customClass="SingleImageViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zsW-mC-Z0X">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="BHJ-hz-KBT">
+                                <rect key="frame" x="0.0" y="172" width="393" height="563"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bEv-EW-YgJ"/>
+                        <color key="backgroundColor" name="YP Black"/>
+                        <constraints>
+                            <constraint firstItem="BHJ-hz-KBT" firstAttribute="bottom" secondItem="zsW-mC-Z0X" secondAttribute="bottomMargin" id="1lU-4Q-lh3"/>
+                            <constraint firstItem="BHJ-hz-KBT" firstAttribute="trailing" secondItem="zsW-mC-Z0X" secondAttribute="trailingMargin" constant="16" id="Ux7-rY-v9P"/>
+                            <constraint firstItem="BHJ-hz-KBT" firstAttribute="top" secondItem="zsW-mC-Z0X" secondAttribute="topMargin" id="owI-ro-dPV"/>
+                            <constraint firstItem="BHJ-hz-KBT" firstAttribute="leading" secondItem="zsW-mC-Z0X" secondAttribute="leadingMargin" constant="-16" id="t8G-1N-Zxf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="KVa-bC-7uQ"/>
+                    <connections>
+                        <outlet property="imageView" destination="BHJ-hz-KBT" id="Mna-G1-1gr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bOj-Vi-fgG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2582" y="-232"/>
+        </scene>
     </scenes>
     <resources>
         <image name="0" width="1600" height="1059"/>
+        <image name="1" width="985" height="1280"/>
         <image name="Photo" width="70" height="70"/>
         <image name="exit" width="44" height="44"/>
         <image name="like-active" width="44" height="44"/>
