@@ -113,7 +113,7 @@
                     <navigationItem key="navigationItem" id="e3x-hw-asW"/>
                     <connections>
                         <outlet property="tableView" destination="UV9-Nw-ZjM" id="idB-Wh-wed"/>
-                        <segue destination="byQ-xP-uZV" kind="show" identifier="ShowSingleImage" id="FBb-LM-fK0"/>
+                        <segue destination="byQ-xP-uZV" kind="presentation" identifier="ShowSingleImage" id="FBb-LM-fK0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -220,22 +220,39 @@
         <!--SingleImage-->
         <scene sceneID="lwC-g9-wAB">
             <objects>
-                <viewController id="byQ-xP-uZV" userLabel="SingleImage" customClass="SingleImageViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="byQ-xP-uZV" userLabel="SingleImage" customClass="SingleImageViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zsW-mC-Z0X">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="BHJ-hz-KBT">
-                                <rect key="frame" x="0.0" y="172" width="393" height="563"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SK-1c-vh8">
+                                <rect key="frame" x="8" y="67" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="bMw-oT-SLK"/>
+                                    <constraint firstAttribute="height" constant="48" id="cB6-rf-UBg"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="backward"/>
+                                <buttonConfiguration key="configuration" style="plain" image="backward">
+                                    <color key="baseForegroundColor" name="YP White"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapBackButton" destination="byQ-xP-uZV" eventType="touchUpInside" id="ku0-yE-sNX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bEv-EW-YgJ"/>
                         <color key="backgroundColor" name="YP Black"/>
                         <constraints>
-                            <constraint firstItem="BHJ-hz-KBT" firstAttribute="bottom" secondItem="zsW-mC-Z0X" secondAttribute="bottomMargin" id="1lU-4Q-lh3"/>
-                            <constraint firstItem="BHJ-hz-KBT" firstAttribute="trailing" secondItem="zsW-mC-Z0X" secondAttribute="trailingMargin" constant="16" id="Ux7-rY-v9P"/>
-                            <constraint firstItem="BHJ-hz-KBT" firstAttribute="top" secondItem="zsW-mC-Z0X" secondAttribute="topMargin" id="owI-ro-dPV"/>
-                            <constraint firstItem="BHJ-hz-KBT" firstAttribute="leading" secondItem="zsW-mC-Z0X" secondAttribute="leadingMargin" constant="-16" id="t8G-1N-Zxf"/>
+                            <constraint firstItem="BHJ-hz-KBT" firstAttribute="bottom" secondItem="zsW-mC-Z0X" secondAttribute="bottom" id="1lU-4Q-lh3"/>
+                            <constraint firstItem="7SK-1c-vh8" firstAttribute="leading" secondItem="bEv-EW-YgJ" secondAttribute="leading" constant="8" id="LNb-Ed-XQd"/>
+                            <constraint firstItem="BHJ-hz-KBT" firstAttribute="trailing" secondItem="zsW-mC-Z0X" secondAttribute="trailing" id="Ux7-rY-v9P"/>
+                            <constraint firstItem="7SK-1c-vh8" firstAttribute="top" secondItem="bEv-EW-YgJ" secondAttribute="top" constant="8" id="Z3P-jD-nc8"/>
+                            <constraint firstItem="BHJ-hz-KBT" firstAttribute="top" secondItem="zsW-mC-Z0X" secondAttribute="top" id="owI-ro-dPV"/>
+                            <constraint firstItem="BHJ-hz-KBT" firstAttribute="leading" secondItem="zsW-mC-Z0X" secondAttribute="leading" id="t8G-1N-Zxf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KVa-bC-7uQ"/>
@@ -252,6 +269,7 @@
         <image name="0" width="1600" height="1059"/>
         <image name="1" width="985" height="1280"/>
         <image name="Photo" width="70" height="70"/>
+        <image name="backward" width="24" height="24"/>
         <image name="exit" width="44" height="44"/>
         <image name="like-active" width="44" height="44"/>
         <image name="main-active" width="30" height="30"/>
