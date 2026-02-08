@@ -216,7 +216,20 @@
                                     <outlet property="delegate" destination="byQ-xP-uZV" id="5Gt-vd-3iF"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SK-1c-vh8">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kc5-5M-UMh" userLabel="ShareButton">
+                                <rect key="frame" x="171.66666666666666" y="751" width="50" height="50"/>
+                                <color key="backgroundColor" name="YP Black"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="F6W-zU-6A2"/>
+                                    <constraint firstAttribute="width" constant="50" id="WJS-yB-PB7"/>
+                                </constraints>
+                                <color key="tintColor" name="YP White"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="sharing">
+                                    <color key="titleColor" name="YP White"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SK-1c-vh8" userLabel="BackwardButton">
                                 <rect key="frame" x="8" y="67" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="bMw-oT-SLK"/>
@@ -235,10 +248,12 @@
                         <viewLayoutGuide key="safeArea" id="bEv-EW-YgJ"/>
                         <color key="backgroundColor" name="YP Black"/>
                         <constraints>
+                            <constraint firstItem="kc5-5M-UMh" firstAttribute="centerX" secondItem="zsW-mC-Z0X" secondAttribute="centerX" id="Bhk-7y-FFQ"/>
                             <constraint firstItem="7SK-1c-vh8" firstAttribute="leading" secondItem="bEv-EW-YgJ" secondAttribute="leading" constant="8" id="LNb-Ed-XQd"/>
                             <constraint firstItem="zT1-js-4yQ" firstAttribute="leading" secondItem="bEv-EW-YgJ" secondAttribute="leading" id="NJz-2V-hHD"/>
                             <constraint firstItem="zT1-js-4yQ" firstAttribute="top" secondItem="zsW-mC-Z0X" secondAttribute="top" id="Neb-cu-jFf"/>
                             <constraint firstItem="7SK-1c-vh8" firstAttribute="top" secondItem="bEv-EW-YgJ" secondAttribute="top" constant="8" id="Z3P-jD-nc8"/>
+                            <constraint firstItem="bEv-EW-YgJ" firstAttribute="bottom" secondItem="kc5-5M-UMh" secondAttribute="bottom" constant="17" id="saw-Xe-l1e"/>
                             <constraint firstAttribute="bottom" secondItem="zT1-js-4yQ" secondAttribute="bottom" id="uNs-Md-3xV"/>
                             <constraint firstItem="zT1-js-4yQ" firstAttribute="trailing" secondItem="bEv-EW-YgJ" secondAttribute="trailing" id="ucI-M6-1kS"/>
                         </constraints>
@@ -247,6 +262,7 @@
                     <connections>
                         <outlet property="imageView" destination="BHJ-hz-KBT" id="Mna-G1-1gr"/>
                         <outlet property="scrollView" destination="zT1-js-4yQ" id="ivX-VP-8P5"/>
+                        <outlet property="shareButton" destination="kc5-5M-UMh" id="0C0-7t-vhX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bOj-Vi-fgG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -262,6 +278,7 @@
         <image name="like-active" width="44" height="44"/>
         <image name="main-active" width="30" height="30"/>
         <image name="profile-active" width="30" height="30"/>
+        <image name="sharing" width="30" height="30"/>
         <namedColor name="YP Black">
             <color red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
