@@ -228,6 +228,9 @@
                                 <state key="normal" image="sharing">
                                     <color key="titleColor" name="YP White"/>
                                 </state>
+                                <connections>
+                                    <action selector="didTapShareButton" destination="byQ-xP-uZV" eventType="touchUpInside" id="v49-k2-5Kk"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SK-1c-vh8" userLabel="BackwardButton">
                                 <rect key="frame" x="8" y="67" width="48" height="48"/>

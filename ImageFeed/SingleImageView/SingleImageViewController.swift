@@ -46,6 +46,16 @@ final class SingleImageViewController: UIViewController {
     @IBAction private func didTapBackButton() {
         dismiss(animated: true, completion: nil)
     }
+    @IBAction func didTapShareButton() {
+        guard let image else { return }
+
+        let activityViewController = UIActivityViewController(
+            activityItems: [image],
+            applicationActivities: nil
+        )
+
+        present(activityViewController, animated: true)
+    }
     
     // MARK: - Functions
     private func rescaleImageInScrollView(image: UIImage) {
