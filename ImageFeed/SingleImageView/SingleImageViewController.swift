@@ -13,6 +13,10 @@ final class SingleImageViewController: UIViewController {
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var shareButton: UIButton!
     
+    // MARK: - Constants
+    private let minZoomScale: CGFloat = 0.1
+    private let maxZoomScale: CGFloat = 1.25
+    
     // MARK: - Properties
     var image: UIImage? {
         didSet {
@@ -27,8 +31,8 @@ final class SingleImageViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        scrollView.minimumZoomScale = 0.1
-        scrollView.maximumZoomScale = 1.25
+        scrollView.minimumZoomScale = minZoomScale
+        scrollView.maximumZoomScale = maxZoomScale
         
         guard let image else { return }
         imageView.image = image

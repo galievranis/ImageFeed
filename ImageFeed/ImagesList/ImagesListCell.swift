@@ -57,7 +57,7 @@ final class ImagesListCell: UITableViewCell {
         likeButton.setImage(UIImage(named: imageName), for: .normal)
     }
     
-    // MARK: - Private methods
+    // MARK: - Private Functions
     private func setUpGradient() {
         gradientLayer.colors = [
             UIColor.ypBlack.withAlphaComponent(0.0).cgColor,
