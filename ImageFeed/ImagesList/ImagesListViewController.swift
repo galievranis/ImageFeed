@@ -11,10 +11,13 @@ final class ImagesListViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet private var tableView: UITableView!
     
+    // MARK: - Constants
+    private let showSingleImageSegueIdentifier = "ShowSingleImage"
+    private let defaultRowHeight: CGFloat = 200
+    private let horizontalInset: CGFloat = 16
+    
     // MARK: - Properties
     private let photoNames: [String] = Array(0..<20).map{ "\($0)" }
-    let defaultRowHeight: CGFloat = 200
-    let horizontalInset: CGFloat = 16
     
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -28,6 +31,24 @@ final class ImagesListViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
+    }
+    
+    // MARK: - Functions
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == showSingleImageSegueIdentifier {
+            guard
+                let viewController = segue.destination as? SingleImageViewController,
+                let indexPath = sender as? IndexPath
+            else {
+                assertionFailure("Invalid segue destination")
+                return
+            }
+            
+            let image = UIImage(named: photoNames[indexPath.row])
+            viewController.image = image
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
     }
 }
 
@@ -50,6 +71,10 @@ extension ImagesListViewController: UITableViewDelegate {
         let scaledHeight = image.size.height * imageScale
         
         return scaledHeight
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: showSingleImageSegueIdentifier, sender: indexPath)
     }
 }
 
@@ -86,3 +111,5 @@ extension ImagesListViewController {
         cell.configure(image: image, dateText: dateText, isLiked: isLiked)
     }
 }
+
+
