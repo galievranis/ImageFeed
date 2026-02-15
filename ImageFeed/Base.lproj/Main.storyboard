@@ -171,6 +171,12 @@
                                 <state key="normal" image="sharing">
                                     <color key="titleColor" name="YP White"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.clipToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="didTapShareButton" destination="byQ-xP-uZV" eventType="touchUpInside" id="v49-k2-5Kk"/>
                                 </connections>

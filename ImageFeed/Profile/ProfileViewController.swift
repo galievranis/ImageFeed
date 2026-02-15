@@ -8,6 +8,7 @@
 import UIKit
 
 final class ProfileViewController: UIViewController {
+    // MARK: - Properties
     private let profileImage = UIImageView()
     private let nameLabel = UILabel()
     private let nicknameLabel = UILabel()
@@ -20,13 +21,17 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
-        configure()
+        configureUI()
+        
+        let model = ProfileModel(
+            name: "Екатерина Новикова",
+            nickname: "@ekaterina_nov",
+            description: "Hello, world!",
+            image: UIImage(named: "profilePicture")
+        )
+        
+        configure(with: model)
         setupConstraints()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        profileImage.layer.cornerRadius = profileImage.bounds.width / 2
     }
     
     // MARK: - Actions
@@ -47,32 +52,36 @@ final class ProfileViewController: UIViewController {
         }
     }
     
-    private func configure() {
-        configureProfileImage()
-        configureLabels()
+    private func configure(with model: ProfileModel) {
+        nameLabel.text = model.name
+        nicknameLabel.text = model.nickname
+        descriptionLabel.text = model.description
+        profileImage.image = model.image
+    }
+    
+    private func configureUI() {
+        configureProfileImageStyles()
+        configureLabelsStyle()
         configureButton()
         configureStackView()
     }
     
-    private func configureProfileImage() {
-        profileImage.image = UIImage(named: "profilePicture")
+    private func configureProfileImageStyles() {
         profileImage.contentMode = .scaleAspectFill
+        profileImage.layer.cornerRadius = 35
         profileImage.clipsToBounds = true
         profileImage.accessibilityLabel = "Profile image"
     }
     
-    private func configureLabels() {
-        nameLabel.text = "Екатерина Новикова"
+    private func configureLabelsStyle() {
         nameLabel.textColor = .ypWhite
         nameLabel.font = .systemFont(ofSize: 23, weight: .bold)
         
-        nicknameLabel.text = "@ekaterina_nov"
         nicknameLabel.textColor = .ypGray
-        nicknameLabel.font = .systemFont(ofSize: 13, weight: .regular)
+        nicknameLabel.font = .systemFont(ofSize: 13)
         
-        descriptionLabel.text = "Hello, world!"
         descriptionLabel.textColor = .ypWhite
-        descriptionLabel.font = .systemFont(ofSize: 13, weight: .regular)
+        descriptionLabel.font = .systemFont(ofSize: 13)
     }
     
     private func configureButton() {

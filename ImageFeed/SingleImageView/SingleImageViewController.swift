@@ -21,29 +21,19 @@ final class SingleImageViewController: UIViewController {
     var image: UIImage? {
         didSet {
             guard isViewLoaded, let image else { return }
-            
-            imageView.image = image
-            imageView.frame.size = image.size
-            rescaleImageInScrollView(image: image)
+            configureImage(image)
         }
     }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        scrollView.delegate = self
         scrollView.minimumZoomScale = minZoomScale
         scrollView.maximumZoomScale = maxZoomScale
         
         guard let image else { return }
-        imageView.image = image
-        imageView.frame.size = image.size
-        rescaleImageInScrollView(image: image)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        shareButton.layer.cornerRadius = shareButton.bounds.height / 2
-        shareButton.clipsToBounds = true
+        configureImage(image)
     }
     
     // MARK: - Actions
@@ -93,6 +83,12 @@ final class SingleImageViewController: UIViewController {
             bottom: insetY,
             right: insetX
         )
+    }
+    
+    private func configureImage(_ image: UIImage) {
+        imageView.image = image
+        imageView.frame.size = image.size
+        rescaleImageInScrollView(image: image)
     }
 }
 

@@ -9,7 +9,7 @@ import UIKit
 
 final class ImagesListViewController: UIViewController {
     // MARK: - IBOutlets
-    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     
     // MARK: - Constants
     private let showSingleImageSegueIdentifier = "ShowSingleImage"
@@ -17,7 +17,7 @@ final class ImagesListViewController: UIViewController {
     private let horizontalInset: CGFloat = 16
     
     // MARK: - Properties
-    private let photoNames: [String] = Array(0..<20).map{ "\($0)" }
+    private let photoNames = (0..<20).map(String.init)
     
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
