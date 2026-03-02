@@ -308,10 +308,17 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1Y6-Xq-mQ1">
+                                <rect key="frame" x="0.0" y="172" width="393" height="4"/>
+                                <color key="progressTintColor" name="YP Black"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BUc-oa-99s"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="1Y6-Xq-mQ1" firstAttribute="top" secondItem="BUc-oa-99s" secondAttribute="top" id="0D7-dX-809"/>
+                            <constraint firstItem="1Y6-Xq-mQ1" firstAttribute="leading" secondItem="BUc-oa-99s" secondAttribute="leading" id="4l9-hY-VJg"/>
+                            <constraint firstItem="BUc-oa-99s" firstAttribute="trailing" secondItem="1Y6-Xq-mQ1" secondAttribute="trailing" id="6Lf-d1-USv"/>
                             <constraint firstItem="Tdw-Nk-48W" firstAttribute="top" secondItem="BUc-oa-99s" secondAttribute="top" id="9B9-xZ-vwY"/>
                             <constraint firstItem="Tdw-Nk-48W" firstAttribute="leading" secondItem="E4f-4K-0aJ" secondAttribute="leading" id="FeP-tb-7YY"/>
                             <constraint firstAttribute="trailing" secondItem="Tdw-Nk-48W" secondAttribute="trailing" id="NfO-sU-rL0"/>
@@ -320,6 +327,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Rel-Cr-dtU"/>
                     <connections>
+                        <outlet property="progressView" destination="1Y6-Xq-mQ1" id="rAH-B4-cW4"/>
                         <outlet property="webView" destination="Tdw-Nk-48W" id="u3c-Q2-L71"/>
                     </connections>
                 </viewController>
