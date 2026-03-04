@@ -8,8 +8,11 @@
 import UIKit
 
 final class AuthViewController: UIViewController {
+    // MARK: - Constants
     private let showWebViewIdentifier = "ShowWebView"
+    private let oauth2Service = OAuth2Service.shared
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBackButton()
@@ -29,6 +32,7 @@ final class AuthViewController: UIViewController {
         }
     }
     
+    // MARK: - Functions
     private func configureBackButton() {
         let image = UIImage(named: "nav-back-button")
         
@@ -39,9 +43,19 @@ final class AuthViewController: UIViewController {
     }
 }
 
+// MARK: - WebViewViewControllerDelegate
 extension AuthViewController: WebViewViewControllerDelegate {
-   func webViewViewComtroller(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
+    func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
+        print("Code received: \(code)")
         
+        oauth2Service.fetchOAuthToken(code: code) { result in
+            switch result {
+            case .success(let token):
+                print("Get token: \(token)")
+            case .failure(let error):
+                print("Can't get token: \(error)")
+            }
+        }
     }
     
     func webViewViewControllerDidCancel(_ vc: WebViewViewController) {
