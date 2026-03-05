@@ -8,10 +8,14 @@
 import UIKit
 
 final class OAuth2Service {
+    // MARK: - Singleton
     static let shared = OAuth2Service()
     private init() {}
+    
+    // MARK: - Properties
     private let tokenStorage = OAuth2TokenStorage()
     
+    // MARK: - Functions
     private func makeOAuthTokenRequest(code: String) -> URLRequest? {
         guard var urlComponents = URLComponents(string: "https://unsplash.com/oauth/token") else {
             return nil
