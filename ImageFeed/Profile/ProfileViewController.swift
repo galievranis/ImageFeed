@@ -27,7 +27,7 @@ final class ProfileViewController: UIViewController {
             name: "Екатерина Новикова",
             nickname: "@ekaterina_nov",
             description: "Hello, world!",
-            image: UIImage(named: "profilePicture")
+            image: UIImage(resource: .profilePicture)
         )
         
         configure(with: model)
@@ -85,7 +85,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func configureButton() {
-        button.setImage(UIImage(named: "exit"), for: .normal)
+        button.setImage(UIImage(resource: .logout), for: .normal)
         button.tintColor = .ypRed
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         button.accessibilityLabel = "Logout"

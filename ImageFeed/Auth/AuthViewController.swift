@@ -40,7 +40,7 @@ final class AuthViewController: UIViewController {
     
     // MARK: - Functions
     private func configureBackButton() {
-        let image = UIImage(named: "nav-back-button")
+        let image = UIImage(resource: .navBackButton)
         
         navigationController?.navigationBar.backIndicatorImage = image
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = image

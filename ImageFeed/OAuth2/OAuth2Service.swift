@@ -5,7 +5,7 @@
 //  Created by Ranis Galiev on 04.03.2026.
 //
 
-import UIKit
+import Foundation
 
 final class OAuth2Service {
     // MARK: - Singleton
@@ -13,9 +13,38 @@ final class OAuth2Service {
     private init() {}
     
     // MARK: - Properties
-    private let tokenStorage = OAuth2TokenStorage()
+    private let tokenStorage = OAuth2TokenStorage.shared
+    private lazy var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
     
     // MARK: - Functions
+    func fetchOAuthToken(code: String, completion: @escaping (Result<String, Error>) -> Void) {
+        
+        guard let urlRequest = makeOAuthTokenRequest(code: code) else { return }
+
+        let task = URLSession.shared.data(for: urlRequest) { [self] result in
+            switch result {
+            case .success(let data):
+                do {
+                    let responseBody = try decoder.decode(OAuthTokenResponseBody.self, from: data)
+                    tokenStorage.token = responseBody.accessToken
+                    completion(.success(responseBody.accessToken))
+                } catch {
+                    print("Decoding Error: \(error)")
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                print("Network or Service Error: \(error)")
+                completion(.failure(error))
+            }
+        }
+    
+        task.resume()
+    }
+    
     private func makeOAuthTokenRequest(code: String) -> URLRequest? {
         guard var urlComponents = URLComponents(string: "https://unsplash.com/oauth/token") else {
             return nil
@@ -34,30 +63,7 @@ final class OAuth2Service {
         }
         
         var request = URLRequest(url: authTokenUrl)
-        request.httpMethod = "POST"
+        request.httpMethod = HTTPMethods.post.rawValue
         return request
-    }
-    
-    func fetchOAuthToken(code: String, completion: @escaping (Result<String, Error>) -> Void) {
-        guard let urlRequest = makeOAuthTokenRequest(code: code) else { return }
-
-        let task = URLSession.shared.data(for: urlRequest) { [weak self] result in
-            switch result {
-            case .success(let data):
-                do {
-                    let responseBody = try JSONDecoder().decode(OAuthTokenResponseBody.self, from: data)
-                    self?.tokenStorage.token = responseBody.accessToken
-                    completion(.success(responseBody.accessToken))
-                } catch {
-                    print("Decoding Error: \(error)")
-                    completion(.failure(error))
-                }
-            case .failure(let error):
-                print("Network or Service Error: \(error)")
-                completion(.failure(error))
-            }
-        }
-    
-        task.resume()
     }
 }

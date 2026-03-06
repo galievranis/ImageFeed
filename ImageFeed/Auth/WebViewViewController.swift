@@ -109,7 +109,6 @@ extension WebViewViewController: WKNavigationDelegate {
         print("URL: \(navigationAction.request.url?.absoluteString ?? "nil")")
         if let code = code(from: navigationAction) {
             print("Code extracted: \(code)")
-            print("Delegate: \(String(describing: delegate))")
             delegate?.webViewViewController(self, didAuthenticateWithCode: code)
             decisionHandler(.cancel)
         } else {
