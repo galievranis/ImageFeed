@@ -53,8 +53,8 @@ final class ImagesListCell: UITableViewCell {
         photoImageView.image = image
         dateLabel.text = dateText
         
-        let imageName = isLiked ? "like-active" : "like-not-active"
-        likeButton.setImage(UIImage(named: imageName), for: .normal)
+        let imageName: ImageResource = isLiked ? .likeActive : .likeNotActive
+        likeButton.setImage(UIImage(resource: imageName), for: .normal)
     }
     
     // MARK: - Private Functions
