@@ -7,6 +7,7 @@
 
 import UIKit
 import ProgressHUD
+import Logging
 
 protocol AuthViewControllerDelegate: AnyObject {
     func didAuthenticate(_ vc: AuthViewController)
@@ -66,7 +67,7 @@ extension AuthViewController: WebViewViewControllerDelegate {
             case .success:
                 self.delegate?.didAuthenticate(self)
             case .failure(let error):
-                print("Can't get token: \(error)")
+                logger.error("Can't get token", metadata: ["error": "\(error)"])
                 break
             }
         }

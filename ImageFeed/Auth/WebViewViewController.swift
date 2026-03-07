@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+import Logging
 
 enum WebViewConstants {
     static let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
@@ -106,9 +107,8 @@ extension WebViewViewController: WKNavigationDelegate {
         decidePolicyFor navigationAction: WKNavigationAction,
         decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
     ) {
-        print("URL: \(navigationAction.request.url?.absoluteString ?? "nil")")
         if let code = code(from: navigationAction) {
-            print("Code extracted: \(code)")
+            logger.info("Code extracted: \(code)")
             delegate?.webViewViewController(self, didAuthenticateWithCode: code)
             decisionHandler(.cancel)
         } else {

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Logging
 
 final class OAuth2Service {
     // MARK: - Singleton
@@ -33,11 +34,11 @@ final class OAuth2Service {
                     tokenStorage.token = responseBody.accessToken
                     completion(.success(responseBody.accessToken))
                 } catch {
-                    print("Decoding Error: \(error)")
+                    logger.error("Decoding error", metadata: ["error:": "\(error)"])
                     completion(.failure(error))
                 }
             case .failure(let error):
-                print("Network or Service Error: \(error)")
+                logger.error("Network or service error:", metadata: ["error:": "\(error)"])
                 completion(.failure(error))
             }
         }
