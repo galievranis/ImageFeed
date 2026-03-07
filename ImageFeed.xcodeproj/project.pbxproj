@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		880C48712F5C8CF700914F8E /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 880C48702F5C8CF700914F8E /* ProgressHUD */; };
 		881E17902F48A5F5007FDBA8 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 881E178F2F48A5F5007FDBA8 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				881E17902F48A5F5007FDBA8 /* WebKit.framework in Frameworks */,
+				880C48712F5C8CF700914F8E /* ProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +142,7 @@
 			);
 			name = ImageFeed;
 			packageProductDependencies = (
+				880C48702F5C8CF700914F8E /* ProgressHUD */,
 			);
 			productName = ImageFeed;
 			productReference = 88D418692F2BC7E700079C3B /* ImageFeed.app */;
@@ -626,6 +629,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		880C48702F5C8CF700914F8E /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88E89AC02F5C8B1E00CAC6AD /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 88D418612F2BC7E700079C3B /* Project object */;
 }
