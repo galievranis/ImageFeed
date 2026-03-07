@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		880C48712F5C8CF700914F8E /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 880C48702F5C8CF700914F8E /* ProgressHUD */; };
+		880C48742F5C8F2900914F8E /* InMemoryLogging in Frameworks */ = {isa = PBXBuildFile; productRef = 880C48732F5C8F2900914F8E /* InMemoryLogging */; };
+		880C48762F5C8F2900914F8E /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 880C48752F5C8F2900914F8E /* Logging */; };
 		881E17902F48A5F5007FDBA8 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 881E178F2F48A5F5007FDBA8 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +74,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				881E17902F48A5F5007FDBA8 /* WebKit.framework in Frameworks */,
+				880C48742F5C8F2900914F8E /* InMemoryLogging in Frameworks */,
+				880C48762F5C8F2900914F8E /* Logging in Frameworks */,
 				880C48712F5C8CF700914F8E /* ProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +147,8 @@
 			name = ImageFeed;
 			packageProductDependencies = (
 				880C48702F5C8CF700914F8E /* ProgressHUD */,
+				880C48732F5C8F2900914F8E /* InMemoryLogging */,
+				880C48752F5C8F2900914F8E /* Logging */,
 			);
 			productName = ImageFeed;
 			productReference = 88D418692F2BC7E700079C3B /* ImageFeed.app */;
@@ -228,6 +234,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				88E89AC02F5C8B1E00CAC6AD /* XCRemoteSwiftPackageReference "ProgressHUD" */,
+				880C48722F5C8F2900914F8E /* XCRemoteSwiftPackageReference "swift-log" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 88D4186A2F2BC7E700079C3B /* Products */;
@@ -620,6 +627,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		880C48722F5C8F2900914F8E /* XCRemoteSwiftPackageReference "swift-log" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-log";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.10.1;
+			};
+		};
 		88E89AC02F5C8B1E00CAC6AD /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/relatedcode/ProgressHUD";
@@ -635,6 +650,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 88E89AC02F5C8B1E00CAC6AD /* XCRemoteSwiftPackageReference "ProgressHUD" */;
 			productName = ProgressHUD;
+		};
+		880C48732F5C8F2900914F8E /* InMemoryLogging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 880C48722F5C8F2900914F8E /* XCRemoteSwiftPackageReference "swift-log" */;
+			productName = InMemoryLogging;
+		};
+		880C48752F5C8F2900914F8E /* Logging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 880C48722F5C8F2900914F8E /* XCRemoteSwiftPackageReference "swift-log" */;
+			productName = Logging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
